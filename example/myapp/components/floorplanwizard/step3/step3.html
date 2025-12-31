@@ -4,32 +4,32 @@
 <div {% component_attrs component_id %}>
     <div class="grid">
         <div>
-            <label>Vorname</label>
+            <label>{{ form.first_name.label }}</label>
             {{ form.first_name }}
         </div>
         <div>
-            <label>Nachname</label>
+            <label>{{ form.last_name.label }}</label>
             {{ form.last_name }}
         </div>
     </div>
 
     <div>
-        <label>Straße</label>
+        <label>{{ form.street.label }}</label>
         {{ form.street }}
     </div>
     <div class="grid">
         <div>
-            <label>Postleitzahl</label>
+            <label>{{ form.postcode.label }}</label>
             {{ form.postcode }}
         </div>
         <div>
-            <label>Stadt</label>
+            <label>{{ form.city.label }}</label>
             {{ form.city }}
         </div>
     </div>
 
     <div>
-        <label>Land</label>
+        <label>{{ form.country.label }}</label>
         {{ form.country }}
     </div>
 </div>

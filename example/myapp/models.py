@@ -48,12 +48,12 @@ class Floorplan(models.Model):
     )
 
     # personal information
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    street = models.CharField(max_length=255)
-    postcode = models.CharField(max_length=5)
-    city = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255, verbose_name="Vorname")
+    last_name = models.CharField(max_length=255, verbose_name="Nachname")
+    street = models.CharField(max_length=255, verbose_name="Straße")
+    postcode = models.CharField(max_length=5, verbose_name="Postleitzahl")
+    city = models.CharField(max_length=255, verbose_name="Stadt")
+    country = models.CharField(max_length=255, verbose_name="Land")
 
     # 3d
     furniture_style = models.CharField(
