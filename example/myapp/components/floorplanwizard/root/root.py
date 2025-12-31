@@ -1,18 +1,16 @@
-from typing import Any, Literal
+from typing import Any
 from django_components import component
-from django.forms import ModelForm, RadioSelect, NumberInput, TextInput
+from django.forms import ModelForm, RadioSelect, NumberInput
 
 from livecomponents import (
     CallContext,
     command,
-    ExtraContextRequest,
     InitStateContext,
     LiveComponentsModel,
+    LiveComponent,
 )
-from livecomponents import LiveComponent
 
 from myapp.models import Floorplan
-from django.http import QueryDict
 
 
 class FloorplanForm(ModelForm):
@@ -30,7 +28,7 @@ class RootState(LiveComponentsModel):
     step: int = 1
     data: dict = dict(plan_type="2d")
     form: ModelForm | None = None
-    saved: any = None
+    saved: Any = None
     saved_id: int | None = None
 
 
