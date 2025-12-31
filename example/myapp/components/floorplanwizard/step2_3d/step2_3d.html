@@ -1,0 +1,35 @@
+{% load livecomponents %}
+{% component_ancestor component_id "floorplanwizard/root" as root_id %}
+
+<div {% component_attrs component_id %}>
+    <div class="grid">
+        <img
+            src="https://www.ohne-makler.net/static/apps/grundrisse/assets/images/previews/3d/layout01_1.jpg"
+        >
+        <div>
+            <div>
+                <label>{{ form.furniture_style.label }}</label>
+                {{ form.furniture_style }}
+            </div>
+            <br>
+
+            <div 
+                hx-post="{% call_command root_id 'update_data' %}"
+                hx-trigger="input delay:250ms, change"
+                hx-include="closest form"
+            >
+                <label>{{ form.number_of_floorplans.label }}</label>
+                {{ form.number_of_floorplans }}
+            </div>
+            <br>
+
+            <div>
+                <input type="hidden" name="show_furniture" value="">
+                <label>
+                    {{ form.show_measurements }}
+                    {{ form.show_measurements.label }}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

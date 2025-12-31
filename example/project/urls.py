@@ -10,6 +10,7 @@ from myapp.views import (
     simplecounter,
     uploads,
     urlnavigation,
+    floorplanwizard,
 )
 
 urlpatterns = [
@@ -23,5 +24,6 @@ urlpatterns = [
     path("chart/", chart, name="chart"),
     path("urlnavigation/", urlnavigation, name="urlnavigation"),
     path("notification/", notification, name="notification"),
+    path("floorplanwizard/", floorplanwizard, name="floorplanwizard"),
     path("livecomponents/", include("livecomponents.urls")),
 ]

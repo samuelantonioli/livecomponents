@@ -1,0 +1,37 @@
+{% load livecomponents %}
+{% component_ancestor component_id "floorplanwizard/root" as root_id %}
+
+<div {% component_attrs component_id %}>
+  <div class="grid">
+    <button
+      type="button"
+      class="plan-card {% if data.plan_type != '2d' %}outline{% endif %}"
+      hx-post="{% call_command root_id 'update_data' %}"
+      hx-vals='{"plan_type":"2d"}'
+    >
+      <figure>
+        <img
+          src="https://www.ohne-makler.net/static/apps/grundrisse/assets/images/2d-preview.png"
+          alt="2D-Grundriss"
+        >
+      </figure>
+      <p>2D (29€)</p>
+    </button>
+
+    <button
+      type="button"
+      class="plan-card {% if data.plan_type != '3d' %}outline{% endif %}"
+      hx-post="{% call_command root_id 'update_data' %}"
+      hx-vals='{"plan_type":"3d"}'
+    >
+      <figure>
+        <img
+          src="https://www.ohne-makler.net/static/apps/grundrisse/assets/images/3d-preview.png"
+          alt="3D-Grundriss"
+        >
+      </figure>
+      <p>3D (39€)</p>
+    </button>
+  </div>
+
+</div>

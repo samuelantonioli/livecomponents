@@ -1,0 +1,96 @@
+{% load livecomponents %}
+
+<div {% component_attrs component_id %}>
+    <form
+        hx-post="{% call_command component_id 'nav' %}"
+    >
+        <div class="grid wizard-buttons" role="group">
+            <button class="arrow-btn secondary {% if step != 1 %}outline{% endif %}">Stil auswählen</button>
+            <button class="arrow-btn secondary {% if step != 2 %}outline{% endif %}">Konfigurieren</button>
+            <button class="secondary {% if step != 3 %}outline{% endif %}">Rechnungsdaten</button>
+        </div>
+
+        <div style="padding: 2rem">
+            {% if step == 1 %}
+                {% livecomponent "floorplanwizard/step1" parent_id=component_id %}
+            {% elif step == 2 %}
+                {% if data.plan_type == "2d" %}
+                    {% livecomponent "floorplanwizard/step2_2d" parent_id=component_id %}
+                {% elif data.plan_type == "3d" %}
+                    {% livecomponent "floorplanwizard/step2_3d" parent_id=component_id %}
+                {% endif %}
+                <div style="text-align: right">
+                    <h3 style="margin-bottom: 0">{{ form.instance.total_price }}€</h3>
+                </div>
+            {% elif step == 3 %}
+                {% livecomponent "floorplanwizard/step3" parent_id=component_id %}
+            {% elif step == 4 %}
+                <h2>Vielen Dank!</h2>
+                <p>Die Bestellung wurde entgegengenommen.<br>
+                Supi! :)
+                </p>
+                Floorplan ID: {{ saved_id }}<br>
+                <pre style="white-space:pre-wrap; word-wrap:break-word">{{ saved }}</pre>
+            {% endif %}
+        </div>
+
+        {% if step != 4 %}
+            <div class="grid" style="grid-template-columns: auto 1fr auto">
+                <button
+                    class="outline"
+                    style="max-width: 15rem"
+                    hx-post="{% call_command component_id 'nav' %}"
+                    hx-vals='{"dir":"prev"}'
+                    hx-include="closest form"
+                    {% if step == 1 %}disabled{% endif %}
+                >
+                    Zurück
+                </button>
+
+                <span aria-hidden="true"></span>
+
+                {% if step < 3 %}
+                    <button
+                        style="max-width: 15rem"
+                        type="submit"
+                        name="dir"
+                        value="next"
+                    >
+                        Weiter
+                    </button>
+                {% else %}
+                    <button
+                        type="submit"
+                        hx-post="{% call_command component_id 'submit' %}"
+                        hx-include="closest form"
+                    >
+                        Bestellen
+                    </button>
+                {% endif %}
+            </div>
+        {% endif %}
+    </form>
+</div>
+
+<style>
+/* für production kommt das in eine separate css file */
+.wizard-buttons button {
+    pointer-events: none;
+}
+
+.arrow-btn {
+    position: relative;
+}
+
+.arrow-btn::after {
+    content: "";
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-50%) rotate(-45deg);
+}
+</style>

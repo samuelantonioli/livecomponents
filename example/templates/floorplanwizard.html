@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load livecomponents %}
+
+{% block body %}
+    <h1>Wizard</h1>
+    <article>
+        <header>
+            <h2>Floor Plan Wizard</h2>
+            <p>This demo shows a wizard implementation for ordering a floor plan.</p>
+        </header>
+        {% livecomponent "floorplanwizard/root" %}
+    </article>
+{% endblock %}

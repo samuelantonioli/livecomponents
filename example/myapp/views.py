@@ -64,3 +64,7 @@ def urlnavigation(request: HttpRequest):
 
 def notification(request: HttpRequest):
     return render(request, "notification.html")
+
+
+def floorplanwizard(request: HttpRequest):
+    return render(request, "floorplanwizard.html")

@@ -1,0 +1,35 @@
+{% load livecomponents %}
+{% component_ancestor component_id "floorplanwizard/root" as root_id %}
+
+<div {% component_attrs component_id %}>
+    <div class="grid">
+        <div>
+            <label>Vorname</label>
+            {{ form.first_name }}
+        </div>
+        <div>
+            <label>Nachname</label>
+            {{ form.last_name }}
+        </div>
+    </div>
+
+    <div>
+        <label>Straße</label>
+        {{ form.street }}
+    </div>
+    <div class="grid">
+        <div>
+            <label>Postleitzahl</label>
+            {{ form.postcode }}
+        </div>
+        <div>
+            <label>Stadt</label>
+            {{ form.city }}
+        </div>
+    </div>
+
+    <div>
+        <label>Land</label>
+        {{ form.country }}
+    </div>
+</div>
